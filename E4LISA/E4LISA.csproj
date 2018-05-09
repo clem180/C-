@@ -34,8 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,6 +63,82 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controle\ListAcces.xaml.cs">
+      <DependentUpon>ListAcces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListCatalogue.xaml.cs">
+      <DependentUpon>ListCatalogue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListCategorie.xaml.cs">
+      <DependentUpon>ListCategorie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListMagasin.xaml.cs">
+      <DependentUpon>ListMagasin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListOperation.xaml.cs">
+      <DependentUpon>ListOperation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListPages.xaml.cs">
+      <DependentUpon>ListPages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListProduits.xaml.cs">
+      <DependentUpon>ListProduits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Acces.xaml.cs">
+      <DependentUpon>Acces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Acceuil.xaml.cs">
+      <DependentUpon>Acceuil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Catalogue.xaml.cs">
+      <DependentUpon>Catalogue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Categorie.xaml.cs">
+      <DependentUpon>Categorie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Magasin.xaml.cs">
+      <DependentUpon>Magasin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Operation.xaml.cs">
+      <DependentUpon>Operation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Produit.xaml.cs">
+      <DependentUpon>Produit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\Zones.xaml.cs">
+      <DependentUpon>Zones.xaml</DependentUpon>
+    </Compile>
+    <Page Include="controle\ListAcces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListCatalogue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListCategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListMagasin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListOperation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListPages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListProduits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,10 +147,100 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BDD\ATTRIBUT.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\CATALOGUE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\CATALOGUE_ENTITE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\CATEGORIE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\ENTITE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\ENTREPRISE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\LisaDigital.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LisaDigital.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\LisaDigital.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\LisaDigital.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LisaDigital.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\MAGASIN.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\OPERATION.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\PAGE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\PRODUIT.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\PRODUIT_ATTRIBUT.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\UTILISATEUR.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\ZONE.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="windows\Acces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Acceuil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Catalogue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Categorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Magasin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Operation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Produit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Zones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -85,6 +260,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="BDD\LisaDigital.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LisaDigital.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BDD\LisaDigital.edmx.diagram">
+      <DependentUpon>LisaDigital.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,6 +275,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BDD\LisaDigital.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LisaDigital.Context.cs</LastGenOutput>
+      <DependentUpon>LisaDigital.edmx</DependentUpon>
+    </Content>
+    <Content Include="BDD\LisaDigital.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LisaDigital.edmx</DependentUpon>
+      <LastGenOutput>LisaDigital.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

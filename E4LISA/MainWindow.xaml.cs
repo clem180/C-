@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E4LISA.windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,19 @@ namespace E4LISA
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void connexion_Click(object sender, RoutedEventArgs e)
+        {
+            BDD.LISA_DIGITALEntities db = new BDD.LISA_DIGITALEntities();
+
+            if ((db.UTILISATEUR.FirstOrDefault(x => x.Identifier == identifiant.Text) != null) && (db.UTILISATEUR.FirstOrDefault(x => x.Password == MotDePass.Password) != null))
+            {
+                Acceuil accueil = new Acceuil();
+
+
+                accueil.Show();
+                this.Close();
+            }
         }
     }
 }

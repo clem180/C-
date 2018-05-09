@@ -13,5 +13,6 @@ namespace E4LISA
     /// </summary>
     public partial class App : Application
     {
+        public BDD.LISA_DIGITALEntities entity = new BDD.LISA_DIGITALEntities();
     }
 }

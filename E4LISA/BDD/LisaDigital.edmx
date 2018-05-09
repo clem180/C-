@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LISA_DIGITALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ATTRIBUT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATALOGUE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Speed" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CatalogWidth" Type="bigint" Nullable="false" />
+          <Property Name="CatalogHeight" Type="bigint" Nullable="false" />
+          <Property Name="OPE_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATALOGUE_ENTITE">
+          <Key>
+            <PropertyRef Name="CAT_Id" />
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="CAT_Id" Type="bigint" Nullable="false" />
+          <Property Name="ENT_Id" Type="bigint" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DisplayStartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DisplayEndDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="bigint" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENTITE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Road" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CP" Type="bigint" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENTREPRISE">
+          <Key>
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="ENT_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MAGASIN">
+          <Key>
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="ENT_Id" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OPERATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Titre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAGE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="bigint" Nullable="false" />
+          <Property Name="CAT_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="bigint" Nullable="false" />
+          <Property Name="CAT_Id" Type="bigint" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PRODUIT_ATTRIBUT">
+          <Key>
+            <PropertyRef Name="PRO_Id" />
+            <PropertyRef Name="ATT_Id" />
+          </Key>
+          <Property Name="PRO_Id" Type="bigint" Nullable="false" />
+          <Property Name="ATT_Id" Type="bigint" Nullable="false" />
+          <Property Name="Valeur" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Road" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CP" Type="bigint" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsTechnician" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CooX" Type="bigint" Nullable="false" />
+          <Property Name="CooY" Type="bigint" Nullable="false" />
+          <Property Name="Width" Type="bigint" Nullable="false" />
+          <Property Name="Height" Type="bigint" Nullable="false" />
+          <Property Name="PRO_Id" Type="bigint" Nullable="false" />
+          <Property Name="PAG_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CATALOGUE_ENTITE_CATALOGUE">
+          <End Role="CATALOGUE" Type="Self.CATALOGUE" Multiplicity="1" />
+          <End Role="CATALOGUE_ENTITE" Type="Self.CATALOGUE_ENTITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGUE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE_ENTITE">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGUE_ENTITE_ENTITE">
+          <End Role="ENTITE" Type="Self.ENTITE" Multiplicity="1" />
+          <End Role="CATALOGUE_ENTITE" Type="Self.CATALOGUE_ENTITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE_ENTITE">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGUE_OPERATION">
+          <End Role="OPERATION" Type="Self.OPERATION" Multiplicity="1" />
+          <End Role="CATALOGUE" Type="Self.CATALOGUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPERATION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE">
+              <PropertyRef Name="OPE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTREPRISE_ENTITE">
+          <End Role="ENTITE" Type="Self.ENTITE" Multiplicity="1" />
+          <End Role="ENTREPRISE" Type="Self.ENTREPRISE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ENTREPRISE">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAGASIN_ENTITE">
+          <End Role="ENTITE" Type="Self.ENTITE" Multiplicity="1" />
+          <End Role="MAGASIN" Type="Self.MAGASIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MAGASIN">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAGE_CATALOGUE">
+          <End Role="CATALOGUE" Type="Self.CATALOGUE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PAGE" Type="Self.PAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGUE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAGE">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_ATTRIBUT_ATTRIBUT">
+          <End Role="ATTRIBUT" Type="Self.ATTRIBUT" Multiplicity="1" />
+          <End Role="PRODUIT_ATTRIBUT" Type="Self.PRODUIT_ATTRIBUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATTRIBUT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT_ATTRIBUT">
+              <PropertyRef Name="ATT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_ATTRIBUT_PRODUIT">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="1" />
+          <End Role="PRODUIT_ATTRIBUT" Type="Self.PRODUIT_ATTRIBUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT_ATTRIBUT">
+              <PropertyRef Name="PRO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_CATALOGUE">
+          <End Role="CATEGORIE" Type="Self.CATEGORIE" Multiplicity="1" />
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_PAGE">
+          <End Role="PAGE" Type="Self.PAGE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ZONE" Type="Self.ZONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAGE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZONE">
+              <PropertyRef Name="PAG_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_PRODUIT">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="1" />
+          <End Role="ZONE" Type="Self.ZONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZONE">
+              <PropertyRef Name="PRO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LISA_DIGITALModelStoreContainer">
+          <EntitySet Name="ATTRIBUT" EntityType="Self.ATTRIBUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOGUE" EntityType="Self.CATALOGUE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATALOGUE_ENTITE" EntityType="Self.CATALOGUE_ENTITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIE" EntityType="Self.CATEGORIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENTITE" EntityType="Self.ENTITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ENTREPRISE" EntityType="Self.ENTREPRISE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAGASIN" EntityType="Self.MAGASIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPERATION" EntityType="Self.OPERATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAGE" EntityType="Self.PAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUIT_ATTRIBUT" EntityType="Self.PRODUIT_ATTRIBUT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZONE" EntityType="Self.ZONE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CATALOGUE_ENTITE_CATALOGUE" Association="Self.FK_CATALOGUE_ENTITE_CATALOGUE">
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+            <End Role="CATALOGUE_ENTITE" EntitySet="CATALOGUE_ENTITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGUE_ENTITE_ENTITE" Association="Self.FK_CATALOGUE_ENTITE_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="CATALOGUE_ENTITE" EntitySet="CATALOGUE_ENTITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGUE_OPERATION" Association="Self.FK_CATALOGUE_OPERATION">
+            <End Role="OPERATION" EntitySet="OPERATION" />
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTREPRISE_ENTITE" Association="Self.FK_ENTREPRISE_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="ENTREPRISE" EntitySet="ENTREPRISE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAGASIN_ENTITE" Association="Self.FK_MAGASIN_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="MAGASIN" EntitySet="MAGASIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAGE_CATALOGUE" Association="Self.FK_PAGE_CATALOGUE">
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+            <End Role="PAGE" EntitySet="PAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_ATTRIBUT_ATTRIBUT" Association="Self.FK_PRODUIT_ATTRIBUT_ATTRIBUT">
+            <End Role="ATTRIBUT" EntitySet="ATTRIBUT" />
+            <End Role="PRODUIT_ATTRIBUT" EntitySet="PRODUIT_ATTRIBUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_ATTRIBUT_PRODUIT" Association="Self.FK_PRODUIT_ATTRIBUT_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="PRODUIT_ATTRIBUT" EntitySet="PRODUIT_ATTRIBUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_CATALOGUE" Association="Self.FK_PRODUIT_CATALOGUE">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_PAGE" Association="Self.FK_ZONE_PAGE">
+            <End Role="PAGE" EntitySet="PAGE" />
+            <End Role="ZONE" EntitySet="ZONE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_PRODUIT" Association="Self.FK_ZONE_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="ZONE" EntitySet="ZONE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LISA_DIGITALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LISA_DIGITALEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ATTRIBUT" EntityType="LISA_DIGITALModel.ATTRIBUT" />
+          <EntitySet Name="CATALOGUE" EntityType="LISA_DIGITALModel.CATALOGUE" />
+          <EntitySet Name="CATALOGUE_ENTITE" EntityType="LISA_DIGITALModel.CATALOGUE_ENTITE" />
+          <EntitySet Name="CATEGORIE" EntityType="LISA_DIGITALModel.CATEGORIE" />
+          <EntitySet Name="ENTITE" EntityType="LISA_DIGITALModel.ENTITE" />
+          <EntitySet Name="ENTREPRISE" EntityType="LISA_DIGITALModel.ENTREPRISE" />
+          <EntitySet Name="MAGASIN" EntityType="LISA_DIGITALModel.MAGASIN" />
+          <EntitySet Name="OPERATION" EntityType="LISA_DIGITALModel.OPERATION" />
+          <EntitySet Name="PAGE" EntityType="LISA_DIGITALModel.PAGE" />
+          <EntitySet Name="PRODUIT" EntityType="LISA_DIGITALModel.PRODUIT" />
+          <EntitySet Name="PRODUIT_ATTRIBUT" EntityType="LISA_DIGITALModel.PRODUIT_ATTRIBUT" />
+          <EntitySet Name="UTILISATEUR" EntityType="LISA_DIGITALModel.UTILISATEUR" />
+          <EntitySet Name="ZONE" EntityType="LISA_DIGITALModel.ZONE" />
+          <AssociationSet Name="FK_PRODUIT_ATTRIBUT_ATTRIBUT" Association="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_ATTRIBUT">
+            <End Role="ATTRIBUT" EntitySet="ATTRIBUT" />
+            <End Role="PRODUIT_ATTRIBUT" EntitySet="PRODUIT_ATTRIBUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGUE_ENTITE_CATALOGUE" Association="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_CATALOGUE">
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+            <End Role="CATALOGUE_ENTITE" EntitySet="CATALOGUE_ENTITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGUE_OPERATION" Association="LISA_DIGITALModel.FK_CATALOGUE_OPERATION">
+            <End Role="OPERATION" EntitySet="OPERATION" />
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAGE_CATALOGUE" Association="LISA_DIGITALModel.FK_PAGE_CATALOGUE">
+            <End Role="CATALOGUE" EntitySet="CATALOGUE" />
+            <End Role="PAGE" EntitySet="PAGE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATALOGUE_ENTITE_ENTITE" Association="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="CATALOGUE_ENTITE" EntitySet="CATALOGUE_ENTITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_CATALOGUE" Association="LISA_DIGITALModel.FK_PRODUIT_CATALOGUE">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ENTREPRISE_ENTITE" Association="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="ENTREPRISE" EntitySet="ENTREPRISE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MAGASIN_ENTITE" Association="LISA_DIGITALModel.FK_MAGASIN_ENTITE">
+            <End Role="ENTITE" EntitySet="ENTITE" />
+            <End Role="MAGASIN" EntitySet="MAGASIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_PAGE" Association="LISA_DIGITALModel.FK_ZONE_PAGE">
+            <End Role="PAGE" EntitySet="PAGE" />
+            <End Role="ZONE" EntitySet="ZONE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_ATTRIBUT_PRODUIT" Association="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="PRODUIT_ATTRIBUT" EntitySet="PRODUIT_ATTRIBUT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZONE_PRODUIT" Association="LISA_DIGITALModel.FK_ZONE_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="ZONE" EntitySet="ZONE" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ATTRIBUT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUIT_ATTRIBUT" Relationship="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_ATTRIBUT" FromRole="ATTRIBUT" ToRole="PRODUIT_ATTRIBUT" />
+        </EntityType>
+        <EntityType Name="CATALOGUE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Speed" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CatalogWidth" Type="Int64" Nullable="false" />
+          <Property Name="CatalogHeight" Type="Int64" Nullable="false" />
+          <Property Name="OPE_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CATALOGUE_ENTITE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_CATALOGUE" FromRole="CATALOGUE" ToRole="CATALOGUE_ENTITE" />
+          <NavigationProperty Name="OPERATION" Relationship="LISA_DIGITALModel.FK_CATALOGUE_OPERATION" FromRole="CATALOGUE" ToRole="OPERATION" />
+          <NavigationProperty Name="PAGE" Relationship="LISA_DIGITALModel.FK_PAGE_CATALOGUE" FromRole="CATALOGUE" ToRole="PAGE" />
+        </EntityType>
+        <EntityType Name="CATALOGUE_ENTITE">
+          <Key>
+            <PropertyRef Name="CAT_Id" />
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="CAT_Id" Type="Int64" Nullable="false" />
+          <Property Name="ENT_Id" Type="Int64" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DisplayStartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DisplayEndDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="CATALOGUE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_CATALOGUE" FromRole="CATALOGUE_ENTITE" ToRole="CATALOGUE" />
+          <NavigationProperty Name="ENTITE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_ENTITE" FromRole="CATALOGUE_ENTITE" ToRole="ENTITE" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int64" Nullable="false" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUIT" Relationship="LISA_DIGITALModel.FK_PRODUIT_CATALOGUE" FromRole="CATEGORIE" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="ENTITE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Road" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="Int64" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CATALOGUE_ENTITE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_ENTITE" FromRole="ENTITE" ToRole="CATALOGUE_ENTITE" />
+          <NavigationProperty Name="ENTREPRISE" Relationship="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE" FromRole="ENTITE" ToRole="ENTREPRISE" />
+          <NavigationProperty Name="MAGASIN" Relationship="LISA_DIGITALModel.FK_MAGASIN_ENTITE" FromRole="ENTITE" ToRole="MAGASIN" />
+        </EntityType>
+        <EntityType Name="ENTREPRISE">
+          <Key>
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="ENT_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ENTITE" Relationship="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE" FromRole="ENTREPRISE" ToRole="ENTITE" />
+        </EntityType>
+        <EntityType Name="MAGASIN">
+          <Key>
+            <PropertyRef Name="ENT_Id" />
+          </Key>
+          <Property Name="ENT_Id" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ENTITE" Relationship="LISA_DIGITALModel.FK_MAGASIN_ENTITE" FromRole="MAGASIN" ToRole="ENTITE" />
+        </EntityType>
+        <EntityType Name="OPERATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Titre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="CATALOGUE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_OPERATION" FromRole="OPERATION" ToRole="CATALOGUE" />
+        </EntityType>
+        <EntityType Name="PAGE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int64" Nullable="false" />
+          <Property Name="CAT_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CATALOGUE" Relationship="LISA_DIGITALModel.FK_PAGE_CATALOGUE" FromRole="PAGE" ToRole="CATALOGUE" />
+          <NavigationProperty Name="ZONE" Relationship="LISA_DIGITALModel.FK_ZONE_PAGE" FromRole="PAGE" ToRole="ZONE" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int64" Nullable="false" />
+          <Property Name="CAT_Id" Type="Int64" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CATEGORIE" Relationship="LISA_DIGITALModel.FK_PRODUIT_CATALOGUE" FromRole="PRODUIT" ToRole="CATEGORIE" />
+          <NavigationProperty Name="PRODUIT_ATTRIBUT" Relationship="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_PRODUIT" FromRole="PRODUIT" ToRole="PRODUIT_ATTRIBUT" />
+          <NavigationProperty Name="ZONE" Relationship="LISA_DIGITALModel.FK_ZONE_PRODUIT" FromRole="PRODUIT" ToRole="ZONE" />
+        </EntityType>
+        <EntityType Name="PRODUIT_ATTRIBUT">
+          <Key>
+            <PropertyRef Name="PRO_Id" />
+            <PropertyRef Name="ATT_Id" />
+          </Key>
+          <Property Name="PRO_Id" Type="Int64" Nullable="false" />
+          <Property Name="ATT_Id" Type="Int64" Nullable="false" />
+          <Property Name="Valeur" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ATTRIBUT" Relationship="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_ATTRIBUT" FromRole="PRODUIT_ATTRIBUT" ToRole="ATTRIBUT" />
+          <NavigationProperty Name="PRODUIT" Relationship="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_PRODUIT" FromRole="PRODUIT_ATTRIBUT" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="UTILISATEUR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Road" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="Int64" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTechnician" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZONE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CooX" Type="Int64" Nullable="false" />
+          <Property Name="CooY" Type="Int64" Nullable="false" />
+          <Property Name="Width" Type="Int64" Nullable="false" />
+          <Property Name="Height" Type="Int64" Nullable="false" />
+          <Property Name="PRO_Id" Type="Int64" Nullable="false" />
+          <Property Name="PAG_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="PAGE" Relationship="LISA_DIGITALModel.FK_ZONE_PAGE" FromRole="ZONE" ToRole="PAGE" />
+          <NavigationProperty Name="PRODUIT" Relationship="LISA_DIGITALModel.FK_ZONE_PRODUIT" FromRole="ZONE" ToRole="PRODUIT" />
+        </EntityType>
+        <Association Name="FK_PRODUIT_ATTRIBUT_ATTRIBUT">
+          <End Type="LISA_DIGITALModel.ATTRIBUT" Role="ATTRIBUT" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.PRODUIT_ATTRIBUT" Role="PRODUIT_ATTRIBUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATTRIBUT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT_ATTRIBUT">
+              <PropertyRef Name="ATT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGUE_ENTITE_CATALOGUE">
+          <End Type="LISA_DIGITALModel.CATALOGUE" Role="CATALOGUE" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.CATALOGUE_ENTITE" Role="CATALOGUE_ENTITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGUE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE_ENTITE">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGUE_OPERATION">
+          <End Type="LISA_DIGITALModel.OPERATION" Role="OPERATION" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.CATALOGUE" Role="CATALOGUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPERATION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE">
+              <PropertyRef Name="OPE_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAGE_CATALOGUE">
+          <End Type="LISA_DIGITALModel.CATALOGUE" Role="CATALOGUE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LISA_DIGITALModel.PAGE" Role="PAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATALOGUE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAGE">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATALOGUE_ENTITE_ENTITE">
+          <End Type="LISA_DIGITALModel.ENTITE" Role="ENTITE" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.CATALOGUE_ENTITE" Role="CATALOGUE_ENTITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CATALOGUE_ENTITE">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_CATALOGUE">
+          <End Type="LISA_DIGITALModel.CATEGORIE" Role="CATEGORIE" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.PRODUIT" Role="PRODUIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT">
+              <PropertyRef Name="CAT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ENTREPRISE_ENTITE">
+          <End Type="LISA_DIGITALModel.ENTITE" Role="ENTITE" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.ENTREPRISE" Role="ENTREPRISE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ENTREPRISE">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MAGASIN_ENTITE">
+          <End Type="LISA_DIGITALModel.ENTITE" Role="ENTITE" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.MAGASIN" Role="MAGASIN" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ENTITE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MAGASIN">
+              <PropertyRef Name="ENT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_PAGE">
+          <End Type="LISA_DIGITALModel.PAGE" Role="PAGE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="LISA_DIGITALModel.ZONE" Role="ZONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAGE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZONE">
+              <PropertyRef Name="PAG_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_ATTRIBUT_PRODUIT">
+          <End Type="LISA_DIGITALModel.PRODUIT" Role="PRODUIT" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.PRODUIT_ATTRIBUT" Role="PRODUIT_ATTRIBUT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRODUIT_ATTRIBUT">
+              <PropertyRef Name="PRO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZONE_PRODUIT">
+          <End Type="LISA_DIGITALModel.PRODUIT" Role="PRODUIT" Multiplicity="1" />
+          <End Type="LISA_DIGITALModel.ZONE" Role="ZONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZONE">
+              <PropertyRef Name="PRO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LISA_DIGITALModelStoreContainer" CdmEntityContainer="LISA_DIGITALEntities">
+          <EntitySetMapping Name="ATTRIBUT">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.ATTRIBUT">
+              <MappingFragment StoreEntitySet="ATTRIBUT">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGUE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.CATALOGUE">
+              <MappingFragment StoreEntitySet="CATALOGUE">
+                <ScalarProperty Name="OPE_Id" ColumnName="OPE_Id" />
+                <ScalarProperty Name="CatalogHeight" ColumnName="CatalogHeight" />
+                <ScalarProperty Name="CatalogWidth" ColumnName="CatalogWidth" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATALOGUE_ENTITE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.CATALOGUE_ENTITE">
+              <MappingFragment StoreEntitySet="CATALOGUE_ENTITE">
+                <ScalarProperty Name="DisplayEndDate" ColumnName="DisplayEndDate" />
+                <ScalarProperty Name="DisplayStartDate" ColumnName="DisplayStartDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ENT_Id" ColumnName="ENT_Id" />
+                <ScalarProperty Name="CAT_Id" ColumnName="CAT_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.CATEGORIE">
+              <MappingFragment StoreEntitySet="CATEGORIE">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENTITE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.ENTITE">
+              <MappingFragment StoreEntitySet="ENTITE">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="Road" ColumnName="Road" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENTREPRISE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.ENTREPRISE">
+              <MappingFragment StoreEntitySet="ENTREPRISE">
+                <ScalarProperty Name="ENT_Id" ColumnName="ENT_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAGASIN">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.MAGASIN">
+              <MappingFragment StoreEntitySet="MAGASIN">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ENT_Id" ColumnName="ENT_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPERATION">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.OPERATION">
+              <MappingFragment StoreEntitySet="OPERATION">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAGE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.PAGE">
+              <MappingFragment StoreEntitySet="PAGE">
+                <ScalarProperty Name="CAT_Id" ColumnName="CAT_Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.PRODUIT">
+              <MappingFragment StoreEntitySet="PRODUIT">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CAT_Id" ColumnName="CAT_Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT_ATTRIBUT">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.PRODUIT_ATTRIBUT">
+              <MappingFragment StoreEntitySet="PRODUIT_ATTRIBUT">
+                <ScalarProperty Name="Valeur" ColumnName="Valeur" />
+                <ScalarProperty Name="ATT_Id" ColumnName="ATT_Id" />
+                <ScalarProperty Name="PRO_Id" ColumnName="PRO_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UTILISATEUR">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.UTILISATEUR">
+              <MappingFragment StoreEntitySet="UTILISATEUR">
+                <ScalarProperty Name="IsTechnician" ColumnName="IsTechnician" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="Road" ColumnName="Road" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZONE">
+            <EntityTypeMapping TypeName="LISA_DIGITALModel.ZONE">
+              <MappingFragment StoreEntitySet="ZONE">
+                <ScalarProperty Name="PAG_Id" ColumnName="PAG_Id" />
+                <ScalarProperty Name="PRO_Id" ColumnName="PRO_Id" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="CooY" ColumnName="CooY" />
+                <ScalarProperty Name="CooX" ColumnName="CooX" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

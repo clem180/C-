@@ -7,6 +7,85 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="24*"></ColumnDefinition>
+            <ColumnDefinition Width="485*"/>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Children>
+            <Grid x:Name="Titre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0.2,0,4.4,0">
+                <TextBlock  Text="   LISA DIGITAL - Back-Office"></TextBlock>
+            </Grid>
+
+            <Grid x:Name="Contenu" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0.2,0,4.4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid.Children>
+                    <Grid x:Name="Image" Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image></Image>
+                    </Grid>
+
+                    <Grid x:Name="Connexion" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"></RowDefinition>
+                            <RowDefinition x:Name="Connexion1" Height="Auto"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition x:Name="Identifiant" Height="Auto"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition x:Name="MotDePasse" Height="Auto"></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.Children>
+                            <TextBlock Text="Connexion" Grid.Row="1" TextAlignment="Center"></TextBlock>
+
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Children>
+                                    <TextBlock Text="Identifiant : "></TextBlock>
+                                    <TextBox Grid.Column="2" Width="100" HorizontalAlignment="Right" x:Name="identifiant"></TextBox>
+                                </Grid.Children>
+                            </Grid>
+
+                            <Grid Grid.Row="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.Children>
+                                    <TextBlock Text="Mot De Passe : "></TextBlock>
+                                    <PasswordBox Grid.Column="2" Width="100" HorizontalAlignment="Right" x:Name="MotDePass" ></PasswordBox>
+                                </Grid.Children>
+                            </Grid>
+
+                            <Button Content="Connexion" Grid.Row="7" HorizontalAlignment="Center" x:Name="connexion" Click="connexion_Click"></Button>
+
+                        </Grid.Children>
+                    </Grid>
+                </Grid.Children>
+            </Grid>
+        </Grid.Children>
     </Grid>
 </Window>

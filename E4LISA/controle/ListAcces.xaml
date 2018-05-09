@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="E4LISA.controle.ListAcces"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:E4LISA.controle"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.Children>
+            <TextBlock Grid.Row="0" Text="Gestion des acces" HorizontalAlignment="Center"></TextBlock>
+            <DataGrid x:Name="dataGridElements" 
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False" 
+                      CanUserDeleteRows="False" 
+                      IsReadOnly="True"
+                      ItemsSource="{Binding }">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cat id" Binding="{Binding CATALOGUE.Label}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ENT_Id" Binding="{Binding ENTITE.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DisplayStartDate" Binding="{Binding DisplayStartDate}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DisplayEndDate" Binding="{Binding DisplayEndDate}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid.Children>
+    </Grid>
+</UserControl>

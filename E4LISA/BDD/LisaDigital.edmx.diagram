@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dc8f3e9191f44d839f3bf242612de696" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="LISA_DIGITALModel.ATTRIBUT" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.CATALOGUE" Width="1.5" PointX="3.75" PointY="11.375" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.CATALOGUE_ENTITE" Width="1.5" PointX="11" PointY="8.5" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.CATEGORIE" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.ENTITE" Width="1.5" PointX="8.75" PointY="9" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.ENTREPRISE" Width="1.5" PointX="11" PointY="14.125" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.MAGASIN" Width="1.5" PointX="11" PointY="11.875" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.OPERATION" Width="1.5" PointX="1.5" PointY="11.75" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.PAGE" Width="1.5" PointX="6" PointY="11.875" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.PRODUIT" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.PRODUIT_ATTRIBUT" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.UTILISATEUR" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LISA_DIGITALModel.ZONE" Width="1.5" PointX="8.25" PointY="2.5" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_ATTRIBUT" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_CATALOGUE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_CATALOGUE_OPERATION" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_PAGE_CATALOGUE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_ENTITE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_PRODUIT_CATALOGUE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_MAGASIN_ENTITE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_ZONE_PAGE" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_PRODUIT" />
+        <AssociationConnector Association="LISA_DIGITALModel.FK_ZONE_PRODUIT" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
