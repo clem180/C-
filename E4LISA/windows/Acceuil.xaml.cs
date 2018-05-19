@@ -20,9 +20,16 @@ namespace E4LISA.windows
     /// </summary>
     public partial class Acceuil : Window
     {
-        public Acceuil()
+        private long user;
+        public Acceuil(long a = 0)
         {
+
             InitializeComponent();
+            if (a != 0)
+            {
+                Acces.Visibility = Visibility.Hidden;
+            }
+            user = a;
         }
 
         private void Acces_Click(object sender, RoutedEventArgs e)
@@ -36,7 +43,7 @@ namespace E4LISA.windows
         private void Catalogue_Click(object sender, RoutedEventArgs e)
         {
             cleargrid();
-            this.listPrincipal.Children.Add(new controle.ListCatalogue());
+            this.listPrincipal.Children.Add(new controle.ListCatalogue(user));
             this.afficheButton.Visibility = Visibility.Visible;
             this.AfficherPages.Visibility = Visibility.Visible;
 
@@ -45,7 +52,7 @@ namespace E4LISA.windows
         private void Categorie_Click(object sender, RoutedEventArgs e)
         {
             cleargrid();
-            this.listPrincipal.Children.Add(new controle.ListCategorie());
+            this.listPrincipal.Children.Add(new controle.ListCategorie(user));
             this.afficheButton.Visibility = Visibility.Visible;
 
         }
@@ -170,6 +177,7 @@ namespace E4LISA.windows
         {
             object moduleCharge = null;
             long a = 0;
+
             foreach (var item in this.listPrincipal.Children)
             {
                 moduleCharge = item;
@@ -214,8 +222,9 @@ namespace E4LISA.windows
             }
             else
             {
-                this.listProduit.Children.Add(new controle.ListProduits(a));
+                this.listProduit.Children.Add(new controle.ListProduits(a,user));
                 this.CreeProduits.Visibility = Visibility.Visible;
+                this.modifierProduit.Visibility = Visibility.Visible;
 
             }
         }
@@ -251,17 +260,78 @@ namespace E4LISA.windows
         private void Magasin_Click(object sender, RoutedEventArgs e)
         {
             cleargrid();
-            this.listPrincipal.Children.Add(new controle.ListMagasin());
+            this.listPrincipal.Children.Add(new controle.ListMagasin(user));
             this.afficheButton.Visibility = Visibility.Visible;
         }
 
         private void Operation_Click(object sender, RoutedEventArgs e)
         {
             cleargrid();
-            this.listPrincipal.Children.Add(new controle.ListOperation());
+            this.listPrincipal.Children.Add(new controle.ListOperation(user));
             this.afficheButton.Visibility = Visibility.Visible;
         }
 
-       
+        private void modifierProduit_Click(object sender, RoutedEventArgs e)
+        {
+            object moduleCharge = null;
+            foreach (var item in this.listProduit.Children)
+            {
+                moduleCharge = item;
+            }
+
+            if (moduleCharge is ListProduits)
+            {
+                ((ListProduits)moduleCharge).Modifier();
+            }
+        }
+
+        private void suprimProduit_Click(object sender, RoutedEventArgs e)
+        {
+            object moduleCharge = null;
+            foreach (var item in this.listProduit.Children)
+            {
+                moduleCharge = item;
+            }
+
+            if (moduleCharge is ListProduits)
+            {
+                ((ListProduits)moduleCharge).Supprimer();
+            }
+        }
+
+        private void deconnection_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow Mw = new MainWindow();
+            Mw.Show();
+            this.Close();
+        }
+
+        private void modifierPage_Click(object sender, RoutedEventArgs e)
+        {
+            object moduleCharge = null;
+            foreach (var item in this.listPages.Children)
+            {
+                moduleCharge = item;
+            }
+
+            if (moduleCharge is ListPages)
+            {
+                ((ListPages)moduleCharge).Modifier();
+            }
+        }
+
+        private void suprimPage_Click(object sender, RoutedEventArgs e)
+        {
+            object moduleCharge = null;
+            foreach (var item in this.listPages.Children)
+            {
+                moduleCharge = item;
+            }
+
+            if (moduleCharge is ListPages)
+            {
+                ((ListPages)moduleCharge).Supprimer();
+            }
+        }
     }
 }

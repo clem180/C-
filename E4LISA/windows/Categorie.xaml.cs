@@ -20,7 +20,7 @@ namespace E4LISA.windows
     /// </summary>
     public partial class Categorie : Window
     {
-        public Categorie(CATEGORIE CatAModif = null)
+        public Categorie(CATEGORIE CatAModif = null ) 
         {
             InitializeComponent();
            

@@ -2,6 +2,7 @@
 using E4LISA.windows;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +23,28 @@ namespace E4LISA.controle
     /// </summary>
     public partial class ListCategorie : UserControl
     {
-        public ListCategorie()
+        public long user;
+        public ListCategorie(long a = 0)
         {
             InitializeComponent();
+            user = a;
             RefreshDatas();
+
         }
         public void RefreshDatas()
         {
-            this.DataContext = ((App)App.Current).entity.CATEGORIE.ToList();
+            if (user != 0)
+            {
+                this.DataContext = ((App)App.Current).entity.CATEGORIE.SqlQuery("SELECT * FROM CATEGORIE INNER JOIN PRODUIT ON PRODUIT.CAT_Id = CATEGORIE.Id INNER JOIN ZONE ON ZONE.PRO_Id = PRODUIT.Id INNER JOIN PAGE ON PAGE.Id = ZONE.PAG_Id INNER JOIN CATALOGUE ON CATALOGUE.Id = PAGE.CAT_Id INNER JOIN CATALOGUE_ENTITE on CATALOGUE_ENTITE.CAT_Id = CATALOGUE.Id where CATALOGUE_ENTITE.ENT_Id = @id", new SqlParameter("@id", this.user)).ToList();
+
+            }
+            else
+            {
+                this.DataContext = ((App)App.Current).entity.CATEGORIE.ToList();
+            }
+
+
+           
         }
         public void Ajouter()
         {

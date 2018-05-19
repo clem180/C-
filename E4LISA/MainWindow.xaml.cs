@@ -1,4 +1,5 @@
-﻿using E4LISA.windows;
+﻿using E4LISA.BDD;
+using E4LISA.windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,18 @@ namespace E4LISA
             if ((db.UTILISATEUR.FirstOrDefault(x => x.Identifier == identifiant.Text) != null) && (db.UTILISATEUR.FirstOrDefault(x => x.Password == MotDePass.Password) != null))
             {
                 Acceuil accueil = new Acceuil();
-
-
+                accueil.Show();
+                this.Close();
+            }
+            else if((db.ENTITE.FirstOrDefault(x => x.Identifier == identifiant.Text) != null) && (db.ENTITE.FirstOrDefault(x => x.Password == MotDePass.Password) != null))
+            {
+                List<ENTITE> Ent = db.ENTITE.Where(x => x.Identifier == identifiant.Text).Where(x => x.Password == MotDePass.Password).ToList();
+                long a = 0;
+                foreach (ENTITE Ents in Ent)
+                {
+                    a = Ents.Id;
+                }
+                Acceuil accueil = new Acceuil(a);
                 accueil.Show();
                 this.Close();
             }

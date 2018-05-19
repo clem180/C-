@@ -33,13 +33,15 @@
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Button x:Name="Acces" Content="Acces" Grid.Row="0" Click="Acces_Click"></Button>
                 <Button x:Name="Catalogue" Content="Catalogue" Grid.Row="2" Click="Catalogue_Click"></Button>
                 <Button x:Name="Categorie" Content="Categorie" Grid.Row="4" Click="Categorie_Click"></Button>
                 <Button x:Name="Magasin" Content="Magasin" Grid.Row="6" Click="Magasin_Click"></Button>
                 <Button x:Name="Operation" Content="Operation" Grid.Row="8" Click="Operation_Click"></Button>
+                <Button x:Name="deconnection" Content="deconnection" Grid.Row="12" Click="deconnection_Click"></Button>
 
             </Grid>
             <Grid x:Name="afficheList" Grid.Column="3" Grid.Row="2" >
@@ -67,6 +69,8 @@
                         <ColumnDefinition Width="30*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Visibility="Hidden"  Grid.Column="0" x:Name="CreeProduits" Click="CreeProduits_Click" Content="Creer produits"></Button>
+                    <Button Visibility="Hidden"  Grid.Column="1" x:Name="modifierProduit" Click="modifierProduit_Click"  Content="Modifier produits"></Button>
+                    <Button Visibility="Hidden"  Grid.Column="2" x:Name="suprimProduit" Click="suprimProduit_Click" Content="Supprimer produits"></Button>
 
                 </Grid>
                 

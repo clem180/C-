@@ -20,7 +20,7 @@ namespace E4LISA.windows
     /// </summary>
     public partial class Catalogue : Window
     {
-        public Catalogue(CATALOGUE CatalogueAmodifier = null)
+        public Catalogue(CATALOGUE CatalogueAmodifier = null )
         {
             InitializeComponent();
             ope.ItemsSource = ((App)App.Current).entity.OPERATION.ToList();

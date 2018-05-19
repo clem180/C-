@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,20 @@ namespace E4LISA.windows
     {
         public string txtEditor;
         public string nameFile;
-        public Produit(CATEGORIE CATEGORIEAmodifier = null)
+        public Produit(PRODUIT ProduitAmodifier = null, long a = 0)
         {
             InitializeComponent();
-            ListeCATEGORIE.ItemsSource = ((App)App.Current).entity.CATEGORIE.ToList();
+            if (a==0)
+            {
+                ListeCATEGORIE.ItemsSource = ((App)App.Current).entity.CATEGORIE.ToList();
+            }
+            else
+            {
+                ListeCATEGORIE.ItemsSource= ((App)App.Current).entity.CATEGORIE.SqlQuery("SELECT * FROM CATEGORIE INNER JOIN PRODUIT ON PRODUIT.CAT_Id = CATEGORIE.Id INNER JOIN ZONE ON ZONE.PRO_Id = PRODUIT.Id INNER JOIN PAGE ON PAGE.Id = ZONE.PAG_Id INNER JOIN CATALOGUE ON CATALOGUE.Id = PAGE.CAT_Id INNER JOIN CATALOGUE_ENTITE on CATALOGUE_ENTITE.CAT_Id = CATALOGUE.Id where CATALOGUE_ENTITE.ENT_Id = @id", new SqlParameter("@id", a)).ToList();
+            }
 
-            if (CATEGORIEAmodifier == null)
+
+            if (ProduitAmodifier == null)
             {
                 this.DataContext = new PRODUIT();
 
@@ -37,7 +46,7 @@ namespace E4LISA.windows
             else
             {
 
-                this.DataContext = CATEGORIEAmodifier;
+                this.DataContext = ProduitAmodifier;
 
             }
         }

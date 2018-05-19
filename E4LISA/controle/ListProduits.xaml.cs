@@ -25,17 +25,19 @@ namespace E4LISA.controle
         public List<long> ZoneList { get; set; }
         public List<PRODUIT> ProdList { get; set; }
         public long pgId  ;
-        public ListProduits(long PAGEID)
+        public long user;
+        public ListProduits(long PAGEID,long a)
         {
             InitializeComponent();
             pgId = PAGEID;
+            user = a;
             RefreshDatas();
         }
 
 
         public void Ajouter()
         {
-            windows.Produit window = new windows.Produit();
+            windows.Produit window = new windows.Produit(null,user);
             window.ShowDialog();
 
 
@@ -69,7 +71,34 @@ namespace E4LISA.controle
             RefreshDatas();
 
         }
+        public void Modifier()
+        {
+            if (dataGridElements.SelectedItems.Count == 1)
+            {
+                //Faire la modif
+                //Civilite civiliteAModifier = dataGridElements.SelectedItem as Civilite;
+                PRODUIT ProduitAModifier = (PRODUIT)dataGridElements.SelectedItem;
 
+                windows.Produit window = new windows.Produit(ProduitAModifier,user);
+                window.ShowDialog();
+
+                if (window.DialogResult.HasValue && window.DialogResult == true)
+                {
+                    //Sauvegarde
+                    ((App)App.Current).entity.SaveChanges();
+                }
+                else
+                {
+                    //On rafraichit l'entity pour éviter les erreurs de données "fantomes" mal déliées
+                    ((App)App.Current).entity = new LISA_DIGITALEntities();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de sélectionner un et un élément maximum");
+            }
+            RefreshDatas();
+        }
         public void RefreshDatas()
         {
             List<PRODUIT> produits = ((App)App.Current).entity.PRODUIT.SqlQuery("SELECT * FROM PRODUIT INNER JOIN ZONE ON ZONE.PRO_Id = PRODUIT.Id WHERE PAG_Id = @id", new SqlParameter("@id", this.pgId)).ToList();

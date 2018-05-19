@@ -1,6 +1,7 @@
 ﻿using E4LISA.BDD;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,20 @@ namespace E4LISA.controle
     public partial class ListPages : UserControl
     {
         long CatId = 0;
-        public ListPages(long CATID )
+    
+        public ListPages(long CATID)
         {
             InitializeComponent();
             CatId = CATID;
+        
             RefreshDatas();
+
         }
         public void RefreshDatas()
         {
-            this.DataContext = ((App)App.Current).entity.PAGE.Where(x => x.CAT_Id == CatId).ToList();
+                this.DataContext = ((App)App.Current).entity.PAGE.Where(x => x.CAT_Id == CatId).ToList();
+          
+          
         }
         public void Supprimer()
         {

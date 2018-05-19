@@ -22,14 +22,23 @@ namespace E4LISA.controle
     /// </summary>
     public partial class ListMagasin : UserControl
     {
-        public ListMagasin()
+        public long user = 0;
+        public ListMagasin(long a)
         {
             InitializeComponent();
+            user = a;
             RefreshDatas();
         }
         public void RefreshDatas()
         {
-            this.DataContext = ((App)App.Current).entity.MAGASIN.ToList();
+            if (user == 0)
+            {
+                this.DataContext = ((App)App.Current).entity.MAGASIN.ToList();
+            }
+            else
+            {
+                this.DataContext = ((App)App.Current).entity.MAGASIN.Where(x => x.ENT_Id == user).ToList();
+            }
         }
         public void Ajouter()
         {

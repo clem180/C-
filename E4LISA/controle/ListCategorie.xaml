@@ -19,8 +19,8 @@
                       IsReadOnly="True"
                       ItemsSource="{Binding }">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Label" Binding="{Binding Label}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Code" Binding="{Binding Code}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Label" Binding="{Binding Label}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
