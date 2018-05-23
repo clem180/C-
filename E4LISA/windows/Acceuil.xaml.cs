@@ -62,6 +62,11 @@ namespace E4LISA.windows
             this.afficheButton.Visibility = Visibility.Hidden;
             this.AfficherPages.Visibility = Visibility.Hidden;
             this.CreePages.Visibility = Visibility.Hidden;
+            this.CreeProduits.Visibility = Visibility.Hidden;
+            this.modifierPage.Visibility = Visibility.Hidden;
+            this.suprimPage.Visibility = Visibility.Hidden;
+            this.modifierProduit.Visibility = Visibility.Hidden;
+            this.suprimProduit.Visibility = Visibility.Hidden;
             this.AfficherProduits.Visibility = Visibility.Hidden;
             this.listPages.Children.Clear();
             this.listProduit.Children.Clear();
@@ -95,7 +100,14 @@ namespace E4LISA.windows
             {
                 ((ListCategorie)moduleCharge).Ajouter();
             }
-            
+            if (moduleCharge is ListAttribut)
+            {
+                ((ListAttribut)moduleCharge).Ajouter();
+            }
+            if (moduleCharge is ListAttributProduit)
+            {
+                 ((ListAttributProduit)moduleCharge).Ajouter();       
+            }
 
 
 
@@ -131,6 +143,14 @@ namespace E4LISA.windows
             if (moduleCharge is ListCategorie)
             {
                 ((ListCategorie)moduleCharge).Modifier();
+            }
+            if (moduleCharge is ListAttribut)
+            {
+                ((ListAttribut)moduleCharge).Modifier();
+            }
+            if (moduleCharge is ListAttributProduit)
+            {
+                ((ListAttributProduit)moduleCharge).Modifier();
             }
         }
 
@@ -171,6 +191,14 @@ namespace E4LISA.windows
             {
                 ((ListPages)moduleCharge).Supprimer();
             }
+            if (moduleCharge is ListAttribut)
+            {
+                ((ListAttribut)moduleCharge).Supprimer();                
+            }
+            if (moduleCharge is ListAttributProduit)
+            {
+                ((ListAttributProduit)moduleCharge).Supprimer();
+            }
         }
 
         private void AfficherPages_Click(object sender, RoutedEventArgs e)
@@ -197,7 +225,8 @@ namespace E4LISA.windows
                 this.listPages.Children.Add(new controle.ListPages(a));
                 this.CreePages.Visibility = Visibility.Visible;
                 this.AfficherProduits.Visibility = Visibility.Visible;
-
+                this.modifierPage.Visibility = Visibility.Visible;
+                this.suprimPage.Visibility = Visibility.Visible;
             }
             
         }
@@ -225,7 +254,7 @@ namespace E4LISA.windows
                 this.listProduit.Children.Add(new controle.ListProduits(a,user));
                 this.CreeProduits.Visibility = Visibility.Visible;
                 this.modifierProduit.Visibility = Visibility.Visible;
-
+                this.suprimProduit.Visibility = Visibility.Visible;
             }
         }
 
@@ -332,6 +361,21 @@ namespace E4LISA.windows
             {
                 ((ListPages)moduleCharge).Supprimer();
             }
+        }
+
+        private void Reduction_Click(object sender, RoutedEventArgs e)
+        {
+            cleargrid();
+            this.listPrincipal.Children.Add(new controle.ListAttribut(user));
+            this.afficheButton.Visibility = Visibility.Visible;
+        }
+
+        private void ReductionLierAuproduit_Click(object sender, RoutedEventArgs e)
+        {
+            cleargrid();
+            
+             this.listPrincipal.Children.Add(new controle.ListAttributProduit(user));
+            this.afficheButton.Visibility = Visibility.Visible;
         }
     }
 }

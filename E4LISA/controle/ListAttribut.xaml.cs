@@ -18,38 +18,44 @@ using System.Windows.Shapes;
 namespace E4LISA.controle
 {
     /// <summary>
-    /// Logique d'interaction pour ListPages.xaml
+    /// Logique d'interaction pour ListAttribut.xaml
     /// </summary>
-    public partial class ListPages : UserControl
+    public partial class ListAttribut : UserControl
     {
-        long CatId = 0;
-    
-        public ListPages(long CATID)
+        public long user;
+        public ListAttribut(long id = 0)
         {
             InitializeComponent();
-            CatId = CATID;
-        
+            user = id;
             RefreshDatas();
 
         }
         public void RefreshDatas()
         {
-                this.DataContext = ((App)App.Current).entity.PAGE.Where(x => x.CAT_Id == CatId).ToList();
-          
-          
+            if (user != 0)
+            {
+                this.DataContext = ((App)App.Current).entity.ATTRIBUT.SqlQuery("SELECT ATTRIBUT.Code,ATTRIBUT.Label,ATTRIBUT.Id FROM ATTRIBUT INNER JOIN PRODUIT_ATTRIBUT ON PRODUIT_ATTRIBUT.ATT_Id = ATTRIBUT.Id INNER JOIN PRODUIT ON PRODUIT.Id = PRODUIT_ATTRIBUT.PRO_Id INNER JOIN ZONE ON ZONE.PRO_Id = PRODUIT.Id INNER JOIN PAGE ON PAGE.Id = ZONE.PAG_Id INNER JOIN CATALOGUE ON CATALOGUE.Id = PAGE.CAT_Id INNER JOIN CATALOGUE_ENTITE on CATALOGUE_ENTITE.CAT_Id = CATALOGUE.Id WHERE ENT_Id = @id GROUP BY ATTRIBUT.Code,ATTRIBUT.Label,ATTRIBUT.Id", new SqlParameter("@id", this.user)).ToList();
+                
+            }
+            else
+            {
+                this.DataContext = ((App)App.Current).entity.ATTRIBUT.ToList();
+            }
+
+
         }
         public void Supprimer()
         {
             if (dataGridElements.SelectedItems.Count == 1)
             {
                 //Faire la modif
-                PAGE PageASupprimer = (PAGE)dataGridElements.SelectedItem;
+                ATTRIBUT ATTRIBUTASupprimer = (ATTRIBUT)dataGridElements.SelectedItem;
 
                 if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet élément ?",
                                     "Suppression",
                                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    ((App)App.Current).entity.PAGE.Remove(PageASupprimer);
+                    ((App)App.Current).entity.ATTRIBUT.Remove(ATTRIBUTASupprimer);
 
                     //Sauvegarde
                     ((App)App.Current).entity.SaveChanges();
@@ -72,9 +78,9 @@ namespace E4LISA.controle
             {
                 //Faire la modif
                 //Civilite civiliteAModifier = dataGridElements.SelectedItem as Civilite;
-                PAGE PageAModifier = (PAGE)dataGridElements.SelectedItem;
+                ATTRIBUT ATTRIBUTAModifier = (ATTRIBUT)dataGridElements.SelectedItem;
 
-                windows.Page window = new windows.Page(PageAModifier);
+                windows.Attribut window = new windows.Attribut(ATTRIBUTAModifier);
                 window.ShowDialog();
 
                 if (window.DialogResult.HasValue && window.DialogResult == true)
@@ -96,7 +102,7 @@ namespace E4LISA.controle
         }
         public void Ajouter()
         {
-            windows.Page window = new windows.Page();
+            windows.Attribut window = new windows.Attribut();
             window.ShowDialog();
 
 
@@ -104,9 +110,9 @@ namespace E4LISA.controle
             {
                 //Sauvegarde
 
-                PAGE PAGEToAdd = (PAGE)window.DataContext;
-                PAGEToAdd.CAT_Id = CatId;
-                ((App)App.Current).entity.PAGE.Add(PAGEToAdd);
+                ATTRIBUT ATTRIBUTToAdd = (ATTRIBUT)window.DataContext;
+                
+                ((App)App.Current).entity.ATTRIBUT.Add(ATTRIBUTToAdd);
                 ((App)App.Current).entity.SaveChanges();
             }
             else
@@ -123,16 +129,7 @@ namespace E4LISA.controle
         {
             RefreshDatas();
         }
-        public long returnPagSelectionee()
-        {
-            long a = 0;
-            if (dataGridElements.SelectedItems.Count == 1)
-            {
-                //Faire la modif
-                PAGE pagselectionne = (PAGE)dataGridElements.SelectedItem;
-                a = pagselectionne.Id;
-            }
-            return a;
-        }
+        
     }
 }
+

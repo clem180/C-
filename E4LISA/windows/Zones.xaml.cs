@@ -40,15 +40,33 @@ namespace E4LISA.windows
 
         private void creer_Click(object sender, RoutedEventArgs e)
         {
-
-            this.DialogResult = true;
-            this.Close();
+            if (!verif())
+            {
+                MessageBox.Show("Coordonnée X + widht doit etre inferieur a 1080 et Coordonée Y et Height doit etre inferieur a 930");
+            }
+            else
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+            
         }
 
         private void Anuller_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
             this.Close();
+        }
+        public Boolean verif()
+        {
+            if (Int32.Parse(CooX.Text) + Int32.Parse(Widht.Text) > 1080 || Int32.Parse(CooY.Text) + Int32.Parse(Height.Text) > 930)
+            {
+             return false;
+            }
+            else
+            {
+             return true;
+            }
         }
     }
 }

@@ -99,6 +99,34 @@ namespace E4LISA.controle
             }
             RefreshDatas();
         }
+        public void Supprimer()
+        {
+            if (dataGridElements.SelectedItems.Count == 1)
+            {
+                //Faire la modif
+                PRODUIT ProduitAsuprmer = (PRODUIT)dataGridElements.SelectedItem;
+
+                if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet élément ?",
+                                    "Suppression",
+                                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    ((App)App.Current).entity.PRODUIT.Remove(ProduitAsuprmer);
+
+                    //Sauvegarde
+                    ((App)App.Current).entity.SaveChanges();
+                }
+                else
+                {
+                    //On rafraichit l'entity pour éviter les erreurs de données "fantomes" mal déliées
+                    ((App)App.Current).entity = new LISA_DIGITALEntities();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Merci de sélectionner un et un élément maximum");
+            }
+            RefreshDatas();
+        }
         public void RefreshDatas()
         {
             List<PRODUIT> produits = ((App)App.Current).entity.PRODUIT.SqlQuery("SELECT * FROM PRODUIT INNER JOIN ZONE ON ZONE.PRO_Id = PRODUIT.Id WHERE PAG_Id = @id", new SqlParameter("@id", this.pgId)).ToList();

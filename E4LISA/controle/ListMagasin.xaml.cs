@@ -42,7 +42,7 @@ namespace E4LISA.controle
         }
         public void Ajouter()
         {
-            Magasin window = new Magasin();
+            Magasin window = new Magasin(null,user);
             window.ShowDialog();
 
 
@@ -50,7 +50,10 @@ namespace E4LISA.controle
             {
                 //Sauvegarde
                 MAGASIN MAGASINToAdd = (MAGASIN)window.DataContext;
-                
+                if (user != 0)
+                {
+                    MAGASINToAdd.ENT_Id = user;
+                }
 
                 ((App)App.Current).entity.MAGASIN.Add(MAGASINToAdd);
 

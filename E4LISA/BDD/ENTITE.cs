@@ -18,6 +18,7 @@ namespace E4LISA.BDD
         public ENTITE()
         {
             this.CATALOGUE_ENTITE = new HashSet<CATALOGUE_ENTITE>();
+            this.MAGASIN = new HashSet<MAGASIN>();
         }
     
         public long Id { get; set; }
@@ -28,10 +29,11 @@ namespace E4LISA.BDD
         public string EMail { get; set; }
         public string Identifier { get; set; }
         public string Password { get; set; }
+        public bool IsTechnician { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CATALOGUE_ENTITE> CATALOGUE_ENTITE { get; set; }
-        public virtual ENTREPRISE ENTREPRISE { get; set; }
-        public virtual MAGASIN MAGASIN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MAGASIN> MAGASIN { get; set; }
     }
 }

@@ -16,29 +16,26 @@ using System.Windows.Shapes;
 namespace E4LISA.windows
 {
     /// <summary>
-    /// Logique d'interaction pour Magasin.xaml
+    /// Logique d'interaction pour ProduitAttribut.xaml
     /// </summary>
-    public partial class Magasin : Window
+    public partial class ProduitAttribut : Window
     {
-        public Magasin(MAGASIN Mag = null,long a = 0)
+        public ProduitAttribut(PRODUIT_ATTRIBUT PA = null)
         {
             InitializeComponent();
-            ListeEntite.ItemsSource = ((App)App.Current).entity.ENTITE.ToList();
-            if (Mag == null)
+            if (PA == null)
             {
-                if (a != 0)
-                {
-                    EntHidden.Visibility = Visibility.Hidden;
-                }
-                this.DataContext = new MAGASIN();
 
-
+                this.ListePro.ItemsSource = ((App)App.Current).entity.PRODUIT.ToList();
+                this.ListeAtt.ItemsSource = ((App)App.Current).entity.ATTRIBUT.ToList();
+                this.DataContext = new PRODUIT_ATTRIBUT();
             }
             else
             {
+                ATThiden.Visibility = Visibility.Hidden;
+                PRohidden.Visibility = Visibility.Hidden;
+                this.DataContext = PA;
 
-                this.DataContext = Mag;
-                EntHidden.Visibility = Visibility.Hidden;
             }
         }
 
@@ -54,4 +51,5 @@ namespace E4LISA.windows
             this.Close();
         }
     }
-}
+ }
+

@@ -30,7 +30,6 @@ namespace E4LISA.BDD
         public virtual DbSet<CATALOGUE_ENTITE> CATALOGUE_ENTITE { get; set; }
         public virtual DbSet<CATEGORIE> CATEGORIE { get; set; }
         public virtual DbSet<ENTITE> ENTITE { get; set; }
-        public virtual DbSet<ENTREPRISE> ENTREPRISE { get; set; }
         public virtual DbSet<MAGASIN> MAGASIN { get; set; }
         public virtual DbSet<OPERATION> OPERATION { get; set; }
         public virtual DbSet<PAGE> PAGE { get; set; }

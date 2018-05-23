@@ -30,14 +30,16 @@ namespace E4LISA
         {
             BDD.LISA_DIGITALEntities db = new BDD.LISA_DIGITALEntities();
 
-            if ((db.UTILISATEUR.FirstOrDefault(x => x.Identifier == identifiant.Text) != null) && (db.UTILISATEUR.FirstOrDefault(x => x.Password == MotDePass.Password) != null))
+            if ((db.UTILISATEUR.FirstOrDefault(x => x.Identifier == identifiant.Text && x.Password == MotDePass.Password) != null))
             {
                 Acceuil accueil = new Acceuil();
                 accueil.Show();
                 this.Close();
             }
-            else if((db.ENTITE.FirstOrDefault(x => x.Identifier == identifiant.Text) != null) && (db.ENTITE.FirstOrDefault(x => x.Password == MotDePass.Password) != null))
+            else if ((db.ENTITE.FirstOrDefault(x => x.Identifier == identifiant.Text && x.Password == MotDePass.Password && x.IsTechnician == true) != null))
             {
+
+
                 List<ENTITE> Ent = db.ENTITE.Where(x => x.Identifier == identifiant.Text).Where(x => x.Password == MotDePass.Password).ToList();
                 long a = 0;
                 foreach (ENTITE Ents in Ent)
@@ -47,6 +49,11 @@ namespace E4LISA
                 Acceuil accueil = new Acceuil(a);
                 accueil.Show();
                 this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Identifiant ou mot de passe incorrect");
             }
         }
     }

@@ -23,6 +23,5 @@ namespace E4LISA.BDD
         public long CP { get; set; }
         public string City { get; set; }
         public string EMail { get; set; }
-        public bool IsTechnician { get; set; }
     }
 }

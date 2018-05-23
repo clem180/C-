@@ -16,6 +16,7 @@ namespace E4LISA.BDD
     {
         public long ENT_Id { get; set; }
         public long Code { get; set; }
+        public long Id { get; set; }
     
         public virtual ENTITE ENTITE { get; set; }
     }

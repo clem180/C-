@@ -10,8 +10,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="Label" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="CATALOGUE">
           <Key>
@@ -42,40 +42,36 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="bigint" Nullable="false" />
-          <Property Name="Label" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Label" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ENTITE">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Road" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CP" Type="bigint" Nullable="false" />
           <Property Name="City" Type="nvarchar(max)" Nullable="false" />
           <Property Name="EMail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Identifier" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ENTREPRISE">
-          <Key>
-            <PropertyRef Name="ENT_Id" />
-          </Key>
-          <Property Name="ENT_Id" Type="bigint" Nullable="false" />
+          <Property Name="IsTechnician" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="MAGASIN">
           <Key>
-            <PropertyRef Name="ENT_Id" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="ENT_Id" Type="bigint" Nullable="false" />
           <Property Name="Code" Type="bigint" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="OPERATION">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Titre" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="EndDate" Type="datetime2" Precision="7" Nullable="false" />
@@ -115,13 +111,12 @@
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Identifier" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Road" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CP" Type="bigint" Nullable="false" />
           <Property Name="City" Type="nvarchar(max)" Nullable="false" />
           <Property Name="EMail" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsTechnician" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ZONE">
           <Key>
@@ -171,21 +166,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ENTREPRISE_ENTITE">
-          <End Role="ENTITE" Type="Self.ENTITE" Multiplicity="1" />
-          <End Role="ENTREPRISE" Type="Self.ENTREPRISE" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ENTITE">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ENTREPRISE">
-              <PropertyRef Name="ENT_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MAGASIN_ENTITE">
           <End Role="ENTITE" Type="Self.ENTITE" Multiplicity="1" />
-          <End Role="MAGASIN" Type="Self.MAGASIN" Multiplicity="0..1" />
+          <End Role="MAGASIN" Type="Self.MAGASIN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ENTITE">
               <PropertyRef Name="Id" />
@@ -196,9 +179,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PAGE_CATALOGUE">
-          <End Role="CATALOGUE" Type="Self.CATALOGUE" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CATALOGUE" Type="Self.CATALOGUE" Multiplicity="1" />
           <End Role="PAGE" Type="Self.PAGE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATALOGUE">
@@ -246,9 +227,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZONE_PAGE">
-          <End Role="PAGE" Type="Self.PAGE" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="PAGE" Type="Self.PAGE" Multiplicity="1" />
           <End Role="ZONE" Type="Self.ZONE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAGE">
@@ -277,7 +256,6 @@
           <EntitySet Name="CATALOGUE_ENTITE" EntityType="Self.CATALOGUE_ENTITE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIE" EntityType="Self.CATEGORIE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ENTITE" EntityType="Self.ENTITE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ENTREPRISE" EntityType="Self.ENTREPRISE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MAGASIN" EntityType="Self.MAGASIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPERATION" EntityType="Self.OPERATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAGE" EntityType="Self.PAGE" Schema="dbo" store:Type="Tables" />
@@ -296,10 +274,6 @@
           <AssociationSet Name="FK_CATALOGUE_OPERATION" Association="Self.FK_CATALOGUE_OPERATION">
             <End Role="OPERATION" EntitySet="OPERATION" />
             <End Role="CATALOGUE" EntitySet="CATALOGUE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ENTREPRISE_ENTITE" Association="Self.FK_ENTREPRISE_ENTITE">
-            <End Role="ENTITE" EntitySet="ENTITE" />
-            <End Role="ENTREPRISE" EntitySet="ENTREPRISE" />
           </AssociationSet>
           <AssociationSet Name="FK_MAGASIN_ENTITE" Association="Self.FK_MAGASIN_ENTITE">
             <End Role="ENTITE" EntitySet="ENTITE" />
@@ -340,7 +314,6 @@
           <EntitySet Name="CATALOGUE_ENTITE" EntityType="LISA_DIGITALModel.CATALOGUE_ENTITE" />
           <EntitySet Name="CATEGORIE" EntityType="LISA_DIGITALModel.CATEGORIE" />
           <EntitySet Name="ENTITE" EntityType="LISA_DIGITALModel.ENTITE" />
-          <EntitySet Name="ENTREPRISE" EntityType="LISA_DIGITALModel.ENTREPRISE" />
           <EntitySet Name="MAGASIN" EntityType="LISA_DIGITALModel.MAGASIN" />
           <EntitySet Name="OPERATION" EntityType="LISA_DIGITALModel.OPERATION" />
           <EntitySet Name="PAGE" EntityType="LISA_DIGITALModel.PAGE" />
@@ -372,10 +345,6 @@
             <End Role="CATEGORIE" EntitySet="CATEGORIE" />
             <End Role="PRODUIT" EntitySet="PRODUIT" />
           </AssociationSet>
-          <AssociationSet Name="FK_ENTREPRISE_ENTITE" Association="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE">
-            <End Role="ENTITE" EntitySet="ENTITE" />
-            <End Role="ENTREPRISE" EntitySet="ENTREPRISE" />
-          </AssociationSet>
           <AssociationSet Name="FK_MAGASIN_ENTITE" Association="LISA_DIGITALModel.FK_MAGASIN_ENTITE">
             <End Role="ENTITE" EntitySet="ENTITE" />
             <End Role="MAGASIN" EntitySet="MAGASIN" />
@@ -398,8 +367,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Label" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRODUIT_ATTRIBUT" Relationship="LISA_DIGITALModel.FK_PRODUIT_ATTRIBUT_ATTRIBUT" FromRole="ATTRIBUT" ToRole="PRODUIT_ATTRIBUT" />
         </EntityType>
         <EntityType Name="CATALOGUE">
@@ -436,7 +405,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="Int64" Nullable="false" />
-          <Property Name="Label" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRODUIT" Relationship="LISA_DIGITALModel.FK_PRODUIT_CATALOGUE" FromRole="CATEGORIE" ToRole="PRODUIT" />
         </EntityType>
         <EntityType Name="ENTITE">
@@ -444,30 +413,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Road" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CP" Type="Int64" Nullable="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EMail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTechnician" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CATALOGUE_ENTITE" Relationship="LISA_DIGITALModel.FK_CATALOGUE_ENTITE_ENTITE" FromRole="ENTITE" ToRole="CATALOGUE_ENTITE" />
-          <NavigationProperty Name="ENTREPRISE" Relationship="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE" FromRole="ENTITE" ToRole="ENTREPRISE" />
           <NavigationProperty Name="MAGASIN" Relationship="LISA_DIGITALModel.FK_MAGASIN_ENTITE" FromRole="ENTITE" ToRole="MAGASIN" />
-        </EntityType>
-        <EntityType Name="ENTREPRISE">
-          <Key>
-            <PropertyRef Name="ENT_Id" />
-          </Key>
-          <Property Name="ENT_Id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ENTITE" Relationship="LISA_DIGITALModel.FK_ENTREPRISE_ENTITE" FromRole="ENTREPRISE" ToRole="ENTITE" />
         </EntityType>
         <EntityType Name="MAGASIN">
           <Key>
-            <PropertyRef Name="ENT_Id" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="ENT_Id" Type="Int64" Nullable="false" />
           <Property Name="Code" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="ENTITE" Relationship="LISA_DIGITALModel.FK_MAGASIN_ENTITE" FromRole="MAGASIN" ToRole="ENTITE" />
         </EntityType>
         <EntityType Name="OPERATION">
@@ -475,7 +438,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Titre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="7" />
@@ -523,13 +486,12 @@
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Road" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CP" Type="Int64" Nullable="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EMail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsTechnician" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ZONE">
           <Key>
@@ -582,9 +544,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PAGE_CATALOGUE">
-          <End Type="LISA_DIGITALModel.CATALOGUE" Role="CATALOGUE" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="LISA_DIGITALModel.CATALOGUE" Role="CATALOGUE" Multiplicity="1" />
           <End Type="LISA_DIGITALModel.PAGE" Role="PAGE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATALOGUE">
@@ -619,21 +579,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ENTREPRISE_ENTITE">
-          <End Type="LISA_DIGITALModel.ENTITE" Role="ENTITE" Multiplicity="1" />
-          <End Type="LISA_DIGITALModel.ENTREPRISE" Role="ENTREPRISE" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ENTITE">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ENTREPRISE">
-              <PropertyRef Name="ENT_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MAGASIN_ENTITE">
           <End Type="LISA_DIGITALModel.ENTITE" Role="ENTITE" Multiplicity="1" />
-          <End Type="LISA_DIGITALModel.MAGASIN" Role="MAGASIN" Multiplicity="0..1" />
+          <End Type="LISA_DIGITALModel.MAGASIN" Role="MAGASIN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ENTITE">
               <PropertyRef Name="Id" />
@@ -644,9 +592,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZONE_PAGE">
-          <End Type="LISA_DIGITALModel.PAGE" Role="PAGE" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="LISA_DIGITALModel.PAGE" Role="PAGE" Multiplicity="1" />
           <End Type="LISA_DIGITALModel.ZONE" Role="ZONE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAGE">
@@ -732,6 +678,7 @@
           <EntitySetMapping Name="ENTITE">
             <EntityTypeMapping TypeName="LISA_DIGITALModel.ENTITE">
               <MappingFragment StoreEntitySet="ENTITE">
+                <ScalarProperty Name="IsTechnician" ColumnName="IsTechnician" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
@@ -743,16 +690,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ENTREPRISE">
-            <EntityTypeMapping TypeName="LISA_DIGITALModel.ENTREPRISE">
-              <MappingFragment StoreEntitySet="ENTREPRISE">
-                <ScalarProperty Name="ENT_Id" ColumnName="ENT_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MAGASIN">
             <EntityTypeMapping TypeName="LISA_DIGITALModel.MAGASIN">
               <MappingFragment StoreEntitySet="MAGASIN">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="ENT_Id" ColumnName="ENT_Id" />
               </MappingFragment>
@@ -802,7 +743,6 @@
           <EntitySetMapping Name="UTILISATEUR">
             <EntityTypeMapping TypeName="LISA_DIGITALModel.UTILISATEUR">
               <MappingFragment StoreEntitySet="UTILISATEUR">
-                <ScalarProperty Name="IsTechnician" ColumnName="IsTechnician" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="CP" ColumnName="CP" />

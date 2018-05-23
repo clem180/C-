@@ -33,7 +33,7 @@ namespace E4LISA.controle
         {
             if (user != 0)
             {
-                List<CATALOGUE> Cat = ((App)App.Current).entity.CATALOGUE.SqlQuery("SELECT * FROM CATALOGUE INNER JOIN CATALOGUE_ENTITE ON CATALOGUE_ENTITE.CAT_Id = CATALOGUE.Id WHERE ENT_Id = @id", new SqlParameter("@id", this.user)).ToList();
+                List<CATALOGUE> Cat = ((App)App.Current).entity.CATALOGUE.SqlQuery("SELECT * FROM CATALOGUE INNER JOIN CATALOGUE_ENTITE ON CATALOGUE_ENTITE.CAT_Id = CATALOGUE.Id WHERE ENT_Id = @id ", new SqlParameter("@id", this.user)).ToList();
                 this.DataContext = Cat;
             }
             else

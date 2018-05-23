@@ -63,8 +63,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BDD\ATTRIBUT.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDD\PRODUIT_ATTRIBUT.cs">
+      <DependentUpon>LisaDigital.tt</DependentUpon>
+    </Compile>
     <Compile Include="controle\ListAcces.xaml.cs">
       <DependentUpon>ListAcces.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListAttribut.xaml.cs">
+      <DependentUpon>ListAttribut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controle\ListAttributProduit.xaml.cs">
+      <DependentUpon>ListAttributProduit.xaml</DependentUpon>
     </Compile>
     <Compile Include="controle\ListCatalogue.xaml.cs">
       <DependentUpon>ListCatalogue.xaml</DependentUpon>
@@ -90,6 +102,9 @@
     <Compile Include="windows\Acceuil.xaml.cs">
       <DependentUpon>Acceuil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\Attribut.xaml.cs">
+      <DependentUpon>Attribut.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\Catalogue.xaml.cs">
       <DependentUpon>Catalogue.xaml</DependentUpon>
     </Compile>
@@ -108,10 +123,21 @@
     <Compile Include="windows\Produit.xaml.cs">
       <DependentUpon>Produit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\ProduitAttribut.xaml.cs">
+      <DependentUpon>ProduitAttribut.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\Zones.xaml.cs">
       <DependentUpon>Zones.xaml</DependentUpon>
     </Compile>
     <Page Include="controle\ListAcces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListAttribut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controle\ListAttributProduit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,9 +173,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BDD\ATTRIBUT.cs">
-      <DependentUpon>LisaDigital.tt</DependentUpon>
-    </Compile>
     <Compile Include="BDD\CATALOGUE.cs">
       <DependentUpon>LisaDigital.tt</DependentUpon>
     </Compile>
@@ -160,9 +183,6 @@
       <DependentUpon>LisaDigital.tt</DependentUpon>
     </Compile>
     <Compile Include="BDD\ENTITE.cs">
-      <DependentUpon>LisaDigital.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BDD\ENTREPRISE.cs">
       <DependentUpon>LisaDigital.tt</DependentUpon>
     </Compile>
     <Compile Include="BDD\LisaDigital.Context.cs">
@@ -192,9 +212,6 @@
     <Compile Include="BDD\PRODUIT.cs">
       <DependentUpon>LisaDigital.tt</DependentUpon>
     </Compile>
-    <Compile Include="BDD\PRODUIT_ATTRIBUT.cs">
-      <DependentUpon>LisaDigital.tt</DependentUpon>
-    </Compile>
     <Compile Include="BDD\UTILISATEUR.cs">
       <DependentUpon>LisaDigital.tt</DependentUpon>
     </Compile>
@@ -210,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\Acceuil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\Attribut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\Produit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\ProduitAttribut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

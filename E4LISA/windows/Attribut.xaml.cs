@@ -16,29 +16,24 @@ using System.Windows.Shapes;
 namespace E4LISA.windows
 {
     /// <summary>
-    /// Logique d'interaction pour Magasin.xaml
+    /// Logique d'interaction pour Attribut.xaml
     /// </summary>
-    public partial class Magasin : Window
+    public partial class Attribut : Window
     {
-        public Magasin(MAGASIN Mag = null,long a = 0)
+        public Attribut(ATTRIBUT AttAmodifier = null)
         {
             InitializeComponent();
-            ListeEntite.ItemsSource = ((App)App.Current).entity.ENTITE.ToList();
-            if (Mag == null)
+            if (AttAmodifier == null)
             {
-                if (a != 0)
-                {
-                    EntHidden.Visibility = Visibility.Hidden;
-                }
-                this.DataContext = new MAGASIN();
+                this.DataContext = new ATTRIBUT();
 
 
             }
             else
             {
 
-                this.DataContext = Mag;
-                EntHidden.Visibility = Visibility.Hidden;
+                this.DataContext = AttAmodifier;
+
             }
         }
 
